@@ -1,0 +1,121 @@
+$breakpoint-desktop: 1024px;
+$commonTransition: all 0.3s linear;
+
+#home {
+  min-width: 100vw;
+  min-height: 100vh;
+  background-image: linear-gradient(90deg, white, rgb(150, 149, 149));
+  #navbar {
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+    background-color: rgb(197, 193, 193);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+    #logo {
+      font-size: 1.5rem;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: bold;
+      width: 45%;
+      padding: 0;
+      li {
+        list-style: none;
+        text-transform: capitalize;
+        font-size: 1.3rem;
+        transition: $commonTransition;
+        cursor: pointer;
+
+        &:hover {
+          color: white;
+        }
+      }
+    }
+
+    .menu-bar {
+      display: none;
+    }
+  }
+
+  #home-main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    #moreWatch {
+      background-color: rgb(124, 123, 123);
+      padding: 1rem 2rem;
+      margin-top: 5rem;
+      border: none;
+      border-radius: 10rem;
+      cursor: pointer;
+      transition: all 0.3s linear;
+      color: aliceblue;
+      font-weight: bold;
+      &:hover {
+        background-color: rgb(87, 87, 87);
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-desktop) {
+  #home {
+    #navbar {
+      display: block;
+      div {
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+      }
+
+      ul {
+        display: none;
+      }
+
+      .visible {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        width: 100%;
+        li {
+          width: 100%;
+          box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+          padding: 10px 0;
+        }
+      }
+
+      .menu-bar {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        font-size: 2rem;
+      }
+    }
+
+    #home-main {
+      h1 {
+        font-size: 1.5rem;
+      }
+      h2 {
+        font-size: 1rem;
+      }
+    }
+  }
+} ;

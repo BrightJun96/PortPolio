@@ -1,0 +1,78 @@
+$breakpoint-desktop: 1024px;
+$breakpoint-pad: 768px;
+
+#contact {
+  width: 100%;
+  min-height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(231, 227, 227);
+
+  .mainText {
+    text-transform: uppercase;
+    font-size: 3rem;
+  }
+  .contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .contact-article {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0;
+      li {
+        width: 500px;
+
+        list-style: none;
+        padding: 1rem 0;
+        i {
+          font-size: 4rem;
+        }
+      }
+    }
+  }
+
+  form {
+    width: 350px;
+
+    legend {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    ul {
+      li {
+        font-weight: bold;
+        padding: 1rem 0;
+
+        display: flex;
+        justify-content: space-evenly;
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-desktop) {
+  #contact {
+    .contact-container {
+      flex-direction: column;
+      .contact-article {
+        flex-direction: row;
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-pad) {
+  #contact {
+    .contact-container {
+      flex-direction: column;
+      .contact-article {
+        flex-direction: column;
+      }
+    }
+  }
+}

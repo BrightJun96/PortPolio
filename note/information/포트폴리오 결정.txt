@@ -1,0 +1,13 @@
+1. 메뉴 구성
+Home About Skills Project (Contact)
+
+
+
+해야될 것 
+
+html 뼈대
+- navbar 만들기
+
+css
+
+javascript 기능추가

@@ -1,0 +1,15 @@
+$commonTransition: all 0.3s linear;
+
+#scrollToTop {
+  position: fixed;
+  bottom: 5%;
+  right: 1%;
+  font-size: 3rem;
+  color: rgb(73, 73, 73);
+  transition: $commonTransition;
+  &:hover {
+    cursor: pointer;
+    font-size: 3.5rem;
+    color: rgb(44, 44, 44);
+  }
+}

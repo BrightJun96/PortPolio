@@ -1,0 +1,104 @@
+$commonTransition: all 0.3s linear;
+
+#projects {
+  width: 100vw;
+  min-height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  .mainText {
+    text-transform: uppercase;
+    font-size: 3rem;
+  }
+
+  #projectMainBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    #filterBox {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      li {
+        cursor: pointer;
+        text-transform: uppercase;
+        padding: 1rem 1.5rem;
+        font-weight: bold;
+        transition: $commonTransition;
+        font-size: 1.1rem;
+        &:hover {
+          color: rgb(153, 152, 152);
+        }
+      }
+    }
+    #projectBox {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(59, 59, 59);
+        cursor: pointer;
+
+        width: 350px;
+        height: 270px;
+        margin: 1rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        background-size: 100% 100%;
+
+        /*
+        &:nth-child(1) {
+          background-image: url(../img/responsiveWeb.png);
+        }
+        &:nth-child(2) {
+          background-image: url(../img/castle-5810180_1920.jpg);
+        }
+        &:nth-child(3) {
+          background-image: url(../img/ferris-wheel-5769428_1920.jpg);
+        }
+        &:nth-child(4) {
+          background-image: url(../img/santa-monica-2438666.jpg);
+        }
+        &:nth-child(5) {
+          background-image: url(../img/eilean-donan-5570684_1920.jpg);
+        }
+        */
+        .text-box {
+          visibility: hidden;
+          color: white;
+          text-transform: uppercase;
+        }
+
+        &:hover {
+          transition: all 0.3s linear;
+          transform: translate(0, -10px);
+          background-blend-mode: multiply;
+          .text-box {
+            visibility: visible;
+          }
+        }
+      }
+    }
+  }
+}
+
+$breakpoint-desktop: 1024px;
+$breakpoint-pad: 768px;
+
+@media (max-width: $breakpoint-desktop) {
+  #projects {
+    #projectMainBox {
+      #filterBox {
+        flex-wrap: wrap;
+        li {
+          width: 36%;
+        }
+      }
+    }
+  }
+}
