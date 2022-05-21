@@ -1,3 +1,4 @@
+import modalContent from "./util/modalContent.mjs";
 /*DOM Selector*/
 
 // DOM ID Selector Function
@@ -12,38 +13,26 @@ function domQuerySelector(selector) {
 
 const navBar = domIDSelector("navbar");
 const categorys = document.querySelectorAll(".category");
-
-//버튼
 const moreWatch = domIDSelector("moreWatch");
 const ScrollToTop = domIDSelector("scrollToTop");
+const menuBar = domQuerySelector(".menu-bar");
+const menu = domQuerySelector(".menu");
 
-//섹션
-const home = domIDSelector("home");
-const about = domIDSelector("about");
-const skills = domIDSelector("skills");
-const projects = domIDSelector("projects");
-const contact = domIDSelector("contact");
-
-//각 세션 위치 값
 const navBarHeight = navBar.clientHeight;
 
-// 높이 값을 반환해주는 함수
+/*높이 값을 반환해주는 함수*/
 function sectionHeight(section) {
   return section.offsetTop - navBarHeight;
 }
 
 /*menuBar toggle*/
-const menuBar = domQuerySelector(".menu-bar");
-const menu = domQuerySelector(".menu");
-
 menuBar.addEventListener("click", () => {
   menu.classList.toggle("visible");
 });
 
 /*scroll function*/
-
 moreWatch.addEventListener("click", () => {
-  scrollTo(0, sectionHeight(about));
+  scrollTo(0, sectionHeight(domIDSelector("about")));
 });
 
 ScrollToTop.addEventListener("click", () => {
@@ -53,19 +42,19 @@ ScrollToTop.addEventListener("click", () => {
 // 각 세션으로 이동할 수 있게 하는 함수
 function switchScrollToSection(event, sectionName) {
   switch (event.target.textContent) {
-    case home.id:
+    case "home":
       scrollTo(0, sectionHeight(domIDSelector(sectionName)));
       break;
-    case about.id:
+    case "about":
       scrollTo(0, sectionHeight(domIDSelector(sectionName)));
       break;
-    case skills.id:
+    case "skills":
       scrollTo(0, sectionHeight(domIDSelector(sectionName)));
       break;
-    case projects.id:
+    case "projects":
       scrollTo(0, sectionHeight(domIDSelector(sectionName)));
       break;
-    case contact.id:
+    case "contact":
       scrollTo(0, sectionHeight(domIDSelector(sectionName)));
   }
 }
@@ -78,7 +67,6 @@ categorys.forEach((category) => {
 
 /*modal add function*/
 
-import { modalCotent } from "./util/modalContent.mjs";
 //modal content Selector
 const project = document.querySelectorAll(".each-project");
 const modal = domQuerySelector(".modal");
@@ -90,24 +78,55 @@ const descriptionContent = domQuerySelector(".description-content");
 const descriptionTech = domQuerySelector(".description-tech");
 const toLink = domQuerySelector(".to-link");
 
+const modalDomCollection = [
+  { name: projectTitle, option: "projectTitle" },
+  { name: projectImg, option: "img" },
+  { name: descriptionConcept, option: "concept" },
+  { name: descriptionContent, option: "content" },
+  { name: descriptionTech, option: "tech" },
+  { name: toLink, option: "link" },
+];
+
+// modal content paint function
+function elementPaint(domCollection, index) {
+  domCollection.forEach((element) => {
+    if (element.name === projectImg) {
+      element.name.src = modalContent[index][element.option];
+    } else if (element.name === toLink) {
+      element.name.href = modalContent[index][element.option];
+    } else {
+      element.name.textContent = modalContent[index][element.option];
+    }
+  });
+}
 //put all modal content
 project.forEach((each, index) => {
-  each.style.backgroundImage = `url(${modalCotent[index].img})`;
-  each.addEventListener("click", (e) => {
+  each.style.backgroundImage = `url(${modalContent[index].img})`;
+  each.addEventListener("click", () => {
     modal.classList.add("open-modal");
-    projectTitle.textContent = modalCotent[index].projectTitle;
-    projectImg.src = modalCotent[index].img;
-    descriptionConcept.textContent = modalCotent[index].concept;
-    descriptionContent.textContent = modalCotent[index].content;
-    descriptionTech.textContent = modalCotent[index].tech;
-    toLink.href = modalCotent[index].link;
+
+    elementPaint(modalDomCollection, index);
+    // projectTitle.textContent = modalContent[index].projectTitle;
+    // projectImg.src = modalContent[index].img;
+    // descriptionConcept.textContent = modalContent[index].concept;
+    // descriptionContent.textContent = modalContent[index].content;
+    // descriptionTech.textContent = modalContent[index].tech;
+    // toLink.href = modalContent[index].link;
   });
 });
 
-//remove modal
+/* remove modal code start*/
 modalRemoveBtn.addEventListener("click", () => {
   modal.classList.remove("open-modal");
 });
+
+// esc 누르면 modal 창 사라지도록 하기
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    modal.classList.remove("open-modal");
+  }
+});
+/*--remove modal code end--*/
 
 /*menu filtering*/
 const filterMenu = document.querySelectorAll(".filter-menu");
@@ -137,12 +156,15 @@ filterMenu.forEach((menu) => {
       console.log(project);
       project.addEventListener("click", () => {
         modal.classList.add("open-modal");
-        projectTitle.textContent = modalCotent[index].projectTitle;
-        projectImg.src = modalCotent[index].img;
-        descriptionConcept.textContent = modalCotent[index].concept;
-        descriptionContent.textContent = modalCotent[index].content;
-        descriptionTech.textContent = modalCotent[index].tech;
-        toLink.href = modalCotent[index].link;
+
+        elementPaint(modalDomCollection, index);
+
+        // projectTitle.textContent = modalContent[index].projectTitle;
+        // projectImg.src = modalContent[index].img;
+        // descriptionConcept.textContent = modalContent[index].concept;
+        // descriptionContent.textContent = modalContent[index].content;
+        // descriptionTech.textContent = modalContent[index].tech;
+        // toLink.href = modalContent[index].link;
       });
     });
   });

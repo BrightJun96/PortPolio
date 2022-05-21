@@ -1,4 +1,4 @@
-const modalCotent = [
+const modalContent = [
   {
     projectTitle: "responsive web(미완)",
     img: "./style/img/responsiveWeb.png",
@@ -57,4 +57,4 @@ const modalCotent = [
   },
 ];
 
-export { modalCotent };
+export default modalContent;
